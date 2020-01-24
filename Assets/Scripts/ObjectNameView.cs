@@ -16,7 +16,7 @@ public class ObjectNameView : MonoBehaviour
 	GameObject cam;
 	Camera camera1;
 	Collider objCollider;
-	Plane[] planes;
+	//Plane[] planes;
 	void Awake()
 	{
 		//enabled = false;
@@ -26,7 +26,7 @@ public class ObjectNameView : MonoBehaviour
 	void Start()
 	{
 		camera1 = Camera.main;
-		planes = GeometryUtility.CalculateFrustumPlanes(camera1);
+		//planes = GeometryUtility.CalculateFrustumPlanes(camera1);
 		objCollider = GetComponent<Collider>();
 	}
 	void TextShadowReady()
@@ -55,7 +55,8 @@ public class ObjectNameView : MonoBehaviour
 		//if (showShadow) GUI.Label(new Rect(screenPosition.x + shadowOffset.x, screenPosition.y + shadowOffset.y, 0, 0), textShadow, shadow);
 		//GUI.Label(new Rect(screenPosition.x, screenPosition.y, 0, 0), text, style);
 		float dist = Vector3.Distance(cam.transform.position, gameObject.transform.position);
-		if (dist < 8f && GeometryUtility.TestPlanesAABB(planes, objCollider.bounds))
+		//if (dist < 8f && GeometryUtility.TestPlanesAABB(planes, objCollider.bounds))
+		if (dist < 8f)
 		{
 			string gameObjName = "<color=#ffea00>" + gameObject.name + "</color>";
 			GUI.Label(new Rect(screenPosition.x, screenPosition.y, 0, 0), gameObjName, style);
