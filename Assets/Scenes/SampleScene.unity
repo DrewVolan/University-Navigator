@@ -12941,6 +12941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 963194225}
   canvas: {fileID: 861861840}
+  axes: 0
 --- !u!1 &965950285
 GameObject:
   m_ObjectHideFlags: 0

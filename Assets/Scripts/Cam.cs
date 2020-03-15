@@ -4,9 +4,18 @@ using UnityEngine;
 public class Cam : MonoBehaviour
 {
     public GameObject cam;
-    float moveSpeed = 70f;
-    float turnSpeed = 80f;
+    readonly float moveSpeed = 50f;
     public Canvas canvas;
+    readonly float sensitivityHor = 9.0f;
+    readonly float sensitivityVert = 9.0f;
+    readonly float minimumVert = -90.0f;
+    readonly float maximumVert = 90.0f;
+    float _rotationX;
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Update()
     {
         if (Input.GetKey(KeyCode.W))
@@ -14,12 +23,30 @@ public class Cam : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
             cam.transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.A))
-            cam.transform.Rotate(Vector3.up * -turnSpeed * Time.deltaTime);
+            cam.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.D))
-            cam.transform.Rotate(Vector3.up * turnSpeed * Time.deltaTime);
+            cam.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.UpArrow))
             cam.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.DownArrow))
             cam.transform.Translate(Vector3.up * -moveSpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.LeftControl) == false)
+        {
+            _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+            _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
+            float delta = Input.GetAxis("Mouse X") * sensitivityHor;
+            float rotationY = transform.localEulerAngles.y + delta;
+            transform.localEulerAngles = new Vector3(_rotationX, rotationY, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 }
