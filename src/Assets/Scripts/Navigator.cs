@@ -17,7 +17,7 @@ public class Navigator : MonoBehaviour
     void Start()
     {
         string navigatorNumber = startPositionCombobox.captionText.text;
-        if (gameObject.name != "Navigator" + navigatorNumber[2])
+        if (gameObject.name != "Navigator" + navigatorNumber[0] + navigatorNumber[2])
         {
             this.enabled = false;
         }
@@ -33,7 +33,7 @@ public class Navigator : MonoBehaviour
     {
         main.SetDestination(targetObj.transform.position);
         if (i == 2)
-            trailRenderer.time = 60;
+            trailRenderer.time = 600;
         if (i < 2)
             i++;
         if (cameraMode.captionText.text == "От первого лица")

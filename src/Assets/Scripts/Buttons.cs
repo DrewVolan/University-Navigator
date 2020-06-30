@@ -7,7 +7,7 @@ public class Buttons : MonoBehaviour
 {
     Navigator navigatorScript;
     GameObject player;
-/*    EventTrigger eventTrigger;
+    /*    EventTrigger eventTrigger;
     public Dropdown startPositionDropdown;
     public Dropdown targetDropdown;
     MeshRenderer material;

@@ -69,12 +69,12 @@ public class ObjectNameView : MonoBehaviour
 		}
 	}
 	/*void OnBecameVisible()
-		{
-			enabled = true;
-		}
+	{
+		enabled = true;
+	}
 
 	void OnBecameInvisible()
-		{
-			enabled = false;
-		}*/
+	{
+		enabled = false;
+	}*/
 }
